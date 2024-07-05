@@ -1,0 +1,30 @@
+
+
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="400px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-content>
+          <div class="card-content">
+            <div class="chart-container" style="width: 2500px; height: 400px;" id="completed-task"></div>
+           <!--  <div class="percentage-text">
+              {{ completedPercentage | number: '1.0-2' }}% der Aufgaben sind erledigt.
+            </div> -->
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-content>
+          <div class="card-content">
+            <div class="chart-container" style="width: 2500px; height: 400px;" id="waiting-tasks-in-one-week"></div>
+          <!--   <div class="tasks-text">
+              {{ tasksDueInOneWeek }} Aufgaben müssen innerhalb der nächsten Woche erledigt werden.
+            </div> -->
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

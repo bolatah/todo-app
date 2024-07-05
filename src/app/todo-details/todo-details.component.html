@@ -1,0 +1,9 @@
+@if(todo){
+    <div >
+        <h2>{{ todo.beschreibung }}</h2>
+        <p><strong>ID:</strong> {{ todo.id }}</p>
+        <p><strong>Priorität</strong> {{ todo.prioritaet }}</p>
+        <p><strong>Erledigt:</strong> {{ todo.erledigt ? 'Ja' : 'Nein' }}</p>
+      </div>
+}
+
