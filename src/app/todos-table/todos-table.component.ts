@@ -15,8 +15,13 @@ import { TodoActionDialogComponent } from '../todo-aktion-dialog/todo-action.com
 import { CommonModule, DatePipe } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectAllTodos, selectCompletedTodos, selectActiveTodos } from '../store/selectors/todos.selectors';
+import {
+  selectAllTodos,
+  selectCompletedTodos,
+  selectActiveTodos,
+} from '../store/selectors/todos.selectors';
 import { RouterLink } from '@angular/router';
+import { UnixTimestampToDatePipe } from '../pipes/unix-timestamp-to-date.pipe';
 
 @Component({
   selector: 'app-todos-table',
@@ -32,8 +37,8 @@ import { RouterLink } from '@angular/router';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    RouterLink
-    
+    RouterLink,
+    UnixTimestampToDatePipe,
   ],
 })
 export class TodosTableComponent implements AfterViewInit {
@@ -49,7 +54,7 @@ export class TodosTableComponent implements AfterViewInit {
     'actions',
   ];
 
-  allTodos$: Observable<Todo[]>; 
+  allTodos$: Observable<Todo[]>;
   constructor(
     private todosService: TodosService,
     private dialog: MatDialog,
@@ -63,7 +68,7 @@ export class TodosTableComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.loadTodos(); 
+    this.loadTodos();
   }
 
   loadTodos(): void {
@@ -84,41 +89,34 @@ export class TodosTableComponent implements AfterViewInit {
         width: '300px',
         data: { action: action, todo: todo },
       });
-    }
-    else if (action === 'Complete') {
+    } else if (action === 'Complete') {
       dialogRef = this.dialog.open(TodoActionDialogComponent, {
         width: '300px',
         data: { action: action, todo: todo },
       });
-    }
-    else if (action === 'Incomplete') {
+    } else if (action === 'Incomplete') {
       dialogRef = this.dialog.open(TodoActionDialogComponent, {
         width: '300px',
         data: { action: action, todo: todo },
       });
     }
     if (dialogRef) {
-      dialogRef.afterClosed().subscribe(result => {
+      dialogRef.afterClosed().subscribe((result) => {
         if (result) {
           if (action === 'Add') {
-              this.loadTodos(); 
+            this.loadTodos();
           } else if (action === 'Edit') {
-              this.loadTodos(); 
+            this.loadTodos();
           }
         }
       });
     }
   }
 
-  formatDate(date :string): string {
-    const newDate = new Date(Number(date) *1000)
-    return this.datePipe.transform(newDate, 'dd-MM-yyyy') || '';
-  }
-
 
   deleteTodo(todo: Todo): void {
     this.todosService.deleteTodo(todo.id).subscribe(() => {
-      this.loadTodos(); 
+      this.loadTodos();
     });
   }
 }

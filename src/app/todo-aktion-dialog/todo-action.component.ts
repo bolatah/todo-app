@@ -109,7 +109,6 @@ export class TodoActionDialogComponent {
       console.log('Form is not valid');
     }
   }
-
   onCancel(): void {
     this.dialogRef.close();
   }

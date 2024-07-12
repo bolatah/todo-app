@@ -1,5 +1,9 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatTableModule, MatTable, MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableModule,
+  MatTable,
+  MatTableDataSource,
+} from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { Todo } from '../store/models/todos.models';
@@ -12,6 +16,7 @@ import { selectCompletedTodos } from '../store/selectors/todos.selectors';
 import { TodosService } from '../services/todos.service';
 import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { UnixTimestampToDatePipe } from '../pipes/unix-timestamp-to-date.pipe';
 
 @Component({
   selector: 'app-archive-table',
@@ -19,16 +24,31 @@ import { RouterLink } from '@angular/router';
   styleUrl: './archive.component.scss',
   standalone: true,
   providers: [DatePipe],
-  imports: [   RouterLink, CommonModule,MatDialogModule, MatMenuModule, MatIconModule, MatTableModule, MatPaginatorModule, MatSortModule]
+  imports: [
+    RouterLink,
+    CommonModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    UnixTimestampToDatePipe
+  ],
 })
-
 export class ArchiveComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Todo>;
   dataSource: MatTableDataSource<Todo>;
-  displayedColumns = ['id', 'beschreibung', 'erledigt', 'faellig', 'prioritaet'];
-  completedTodos$: Observable<Todo[]>; 
+  displayedColumns = [
+    'id',
+    'beschreibung',
+    'erledigt',
+    'faellig',
+    'prioritaet',
+  ];
+  completedTodos$: Observable<Todo[]>;
 
   constructor(
     private todosService: TodosService,
@@ -42,7 +62,7 @@ export class ArchiveComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.loadTodos(); 
+    this.loadTodos();
   }
 
   loadTodos(): void {
@@ -50,9 +70,4 @@ export class ArchiveComponent implements AfterViewInit {
       this.dataSource.data = todos;
     });
   }
-
-   formatDate(date :string): string {
-    const newDate = new Date(Number(date) *1000)
-    return this.datePipe.transform(newDate, 'dd-MM-yyyy') || '';
-  } 
 }

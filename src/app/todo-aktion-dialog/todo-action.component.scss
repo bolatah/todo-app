@@ -1,3 +1,9 @@
 .form-field{
     min-height: auto;
 }
+
+.actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

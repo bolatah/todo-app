@@ -21,9 +21,9 @@ import { MatInputModule } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth-service.service';
 import { Store, select } from '@ngrx/store';
-import { AuthState } from '../store/models/auth.models';
 import { Observable } from 'rxjs';
 import {
+  AuthState,
   selectAuthToken,
   selectAuthenticatedUser,
   selectIsAuthenticated,

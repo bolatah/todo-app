@@ -26,7 +26,7 @@
     <!-- Fällig Column -->
     <ng-container matColumnDef="faellig">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Fällig</th>
-      <td mat-cell *matCellDef="let row">{{ formatDate(row.faellig) }}</td>
+      <td mat-cell *matCellDef="let row">{{row.faellig  | unixTimestampToDate | date: "dd-MM-yyyy" }}</td>
     </ng-container>
 
     <!-- Priorität Column -->

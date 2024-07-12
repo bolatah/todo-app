@@ -13,7 +13,7 @@ import {
 import { ReactiveFormsModule } from '@angular/forms';
 import { Store, StoreModule, select } from '@ngrx/store';
 import { Observable, map, shareReplay } from 'rxjs';
-import { AuthState } from './store/models/auth.models';
+
 import { selectAuthToken, selectIsAuthenticated } from './store/selectors/auth.selectors';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';

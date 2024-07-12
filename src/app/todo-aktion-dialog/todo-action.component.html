@@ -27,7 +27,7 @@
   </mat-form-field>
 
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="actions">
    <button mat-button (click)="onCancel()">Abbrechen</button> 
   <button mat-button [mat-dialog-close]="data.todo"  [disabled]="!form.valid" type="submit">Speichern</button>
 </div>

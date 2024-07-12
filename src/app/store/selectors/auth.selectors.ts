@@ -1,6 +1,13 @@
 
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { User, AuthState } from "../models/auth.models";
+import { User } from "../models/auth.models";
+
+
+export interface AuthState {
+  token: string | null;
+  isAuthenticated: boolean;
+  user: User | null;
+  }
 
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
@@ -11,7 +18,6 @@ export const selectAuthToken = createSelector(
 );
 
 export const selectAuthenticatedUser = createSelector(
-
   selectAuthState,
   (state: AuthState) => state.user
 );
