@@ -15,8 +15,8 @@ import { AuthState, selectAuthToken } from '../store/selectors/auth.selectors';
   providedIn: 'root',
 })
 export class TodosService {
-  private apiUrl = 'http://localhost:9002/todos';
-  private apiUrlForActions = 'http://localhost:9002/todo';
+  private apiUrl = 'https://todo-app-with-angular-18-9db2a73c8e74.herokuapp.com/todos';
+  private apiUrlForActions = 'https://todo-app-with-angular-18-9db2a73c8e74.herokuapp.com/todo';
   //private token$ = this.store.select(selectAuthToken);
 
   constructor(
