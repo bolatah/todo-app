@@ -9,7 +9,7 @@ import { AuthState, selectIsAuthenticated } from '../store/selectors/auth.select
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://todo-app-with-angular-18-9db2a73c8e74.herokuapp.com/login';
+  private apiUrl = 'http://localhost:9002/login';
  
   constructor(
     private httpClient: HttpClient,
