@@ -1,1 +1,1 @@
-web: node server.js & ./todoApi
+web: ./todoApi & npm run start
