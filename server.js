@@ -16,7 +16,7 @@ app.get('*', (req, res) => {
 process.env.PORT = process.env.PORT || '9002';  // Default to '9002' if not set
 
 // Start the Go server
-const goServer = exec('./goServer', { env: process.env });
+const goServer = exec('./todoApi', { env: process.env });
 
 goServer.stdout.on('data', (data) => {
   console.log(`Go server stdout: ${data}`);
