@@ -1,1 +1,1 @@
-web: ./todoApi
+web: npm run start & ./start.sh
